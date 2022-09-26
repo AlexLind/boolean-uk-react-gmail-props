@@ -1,3 +1,4 @@
+import CurrentEmail from "./components/CurrentEmail";
 import Emails from "./components/Emails";
 import LeftMenu from "./components/LeftMenu";
 import Header from "./components/Header";
@@ -15,27 +16,8 @@ function App() {
   const [emails, setEmails] = useState(initialEmails);
   const [hideRead, setHideRead] = useState(false);
   const [currentTab, setCurrentTab] = useState("inbox");
-
-  const unreadEmails = emails.filter((email) => !email.read);
-  const starredEmails = emails.filter((email) => email.starred);
-
-  const toggleStar = (targetEmail) => {
-    const updatedEmails = (emails) =>
-      emails.map((email) =>
-        email.id === targetEmail.id
-          ? { ...email, starred: !email.starred }
-          : email
-      );
-    setEmails(updatedEmails);
-  };
-
-  const toggleRead = (targetEmail) => {
-    const updatedEmails = (emails) =>
-      emails.map((email) =>
-        email.id === targetEmail.id ? { ...email, read: !email.read } : email
-      );
-    setEmails(updatedEmails);
-  };
+  const [seeEmail, setSeeEmail] = useState(false);
+  const [currentEmail, setCurrentEmail] = useState({});
 
   let filteredEmails = emails;
 
@@ -52,14 +34,17 @@ function App() {
         setCurrentTab={setCurrentTab}
         hideRead={hideRead}
         setHideRead={setHideRead}
-        unreadEmails={unreadEmails}
-        starredEmails={starredEmails}
+        emails={emails}
       />
-      <Emails
-        toggleRead={toggleRead}
-        toggleStar={toggleStar}
-        filteredEmails={filteredEmails}
-      />
+      {seeEmail ? (
+        <CurrentEmail currentEmail={currentEmail} setSeeEmail={setSeeEmail} />
+      ) : (
+        <Emails
+          filteredEmails={filteredEmails}
+          setSeeEmail={setSeeEmail}
+          setCurrentEmail={setCurrentEmail}
+        />
+      )}
     </div>
   );
 }

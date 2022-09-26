@@ -4,9 +4,11 @@ export default function LeftMenu({
   setCurrentTab,
   hideRead,
   setHideRead,
-  unreadEmails,
-  starredEmails
+  emails,
 }) {
+
+    const unreadEmails = emails.filter((email) => !email.read);
+    const starredEmails = emails.filter((email) => email.starred);
 
   return <nav className="left-menu">
         <ul className="inbox-list">
