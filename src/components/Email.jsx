@@ -1,6 +1,5 @@
 import React from "react";
 export default function Email({
-  index,
   toggleRead,
   email,
   toggleStar,
@@ -9,15 +8,15 @@ export default function Email({
 })
 
 {
-  return <li key={`email: ${index}`} className={`email ${email.read ? 'read' : 'unread'}`} onClick={() => {setSeeEmail(true); setCurrentEmail(email)}}>
+  return <li className={`email ${email.read ? 'read' : 'unread'}`} >
               <div className="select">
                 <input className="select-checkbox" type="checkbox" checked={email.read} onChange={() => toggleRead(email)} />
               </div>
               <div className="star">
                 <input className="star-checkbox" type="checkbox" checked={email.starred} onChange={() => toggleStar(email)} />
               </div>
-              <div className="sender">{email.sender}</div>
-              <div className="title">{email.title}</div>
+              <div className="sender" onClick={() => {setSeeEmail(true); setCurrentEmail(email)}}>{email.sender}</div>
+              <div className="title" onClick={() => {setSeeEmail(true); setCurrentEmail(email)}}>{email.title}</div>
             </li>;
 }
   

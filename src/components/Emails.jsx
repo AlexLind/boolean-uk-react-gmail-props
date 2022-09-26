@@ -27,9 +27,8 @@ export default function Emails({
   return (
     <main className="emails">
       <ul>
-        {filteredEmails.map((email, index) => (
-          <Email
-            index={index}
+        {filteredEmails.map((email) => (
+          <Email key={email.id}
             toggleRead={toggleRead}
             email={email}
             toggleStar={toggleStar}
