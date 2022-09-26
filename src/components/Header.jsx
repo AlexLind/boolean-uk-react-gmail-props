@@ -1,5 +1,6 @@
 import React from "react";
-export default function Header({}) {
+export default function Header({filteredEmails, setSearchString}) {
+
   return <header className="header">
         <div className="left-menu">
           <svg className="menu-icon" focusable="false" viewBox="0 0 24 24">
@@ -10,7 +11,7 @@ export default function Header({}) {
         </div>
 
         <div className="search">
-          <input className="search-bar" placeholder="Search mail" />
+          <input className="search-bar" placeholder="Search mail" onChange={(e) => {setSearchString(e.target.value.toLowerCase()) }}/>
         </div>
       </header>;
 }
