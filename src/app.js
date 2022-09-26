@@ -51,6 +51,7 @@ function App() {
           filteredEmails={filteredEmails}
           setSeeEmail={setSeeEmail}
           setCurrentEmail={setCurrentEmail}
+          setEmails={setEmails}
         />
       )}
     </div>

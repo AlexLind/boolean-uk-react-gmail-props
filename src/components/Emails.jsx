@@ -3,7 +3,8 @@ import React from "react";
 export default function Emails({
   filteredEmails,
   setSeeEmail,
-  setCurrentEmail
+  setCurrentEmail,
+  setEmails
 }) {
   const toggleRead = (targetEmail) => {
     const updatedEmails = (emails) =>
